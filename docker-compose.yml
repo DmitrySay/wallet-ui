@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  wallet-ui:
+    image: wallet-ui:latest
+    container_name: wallet_ui
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - web
+
+networks:
+  web:
+    driver: "bridge"
