@@ -1,36 +1,51 @@
 import axios from 'axios';
 
 const baseURL = `${process.env.REACT_APP_API_HOST}/api/v1`;
-export const getWalletsApi = () => {
+
+export const getWalletsApi = async () => {
   let url = `/wallets?size=10&sort=id&page=0`;
-  return axios({
+  const { data } = await axios({
     headers: { 'Content-Type': 'application/json' },
     method: 'GET',
     baseURL: baseURL,
     url: url,
   });
+  return data?.content ? data.content : data;
 };
 
-export const addAmountToWalletApi = (data) => {
+export const addAmountToWalletApi = async (requestData) => {
   let url = `/wallets/wallet/amount/add`;
-  return axios({
+  const { data } = await axios({
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',
     baseURL: baseURL,
     url: url,
-    data: data
+    data: requestData,
   });
+  return data;
 };
 
-
-export const removeAmountFromWalletApi = (data) => {
+export const removeAmountFromWalletApi = async (requestData) => {
   let url = `/wallets/wallet/amount/remove`;
-  return axios({
+  const { data } = await axios({
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',
     baseURL: baseURL,
     url: url,
-    data: data
+    data: requestData,
+  });
+  return data;
+};
+
+export const transferAmountWalletApi = async (requestData) => {
+  let url = `/wallets/wallet/amount/transfer`;
+  console.log('before', requestData);
+  return await axios({
+    headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
+    baseURL: baseURL,
+    url: url,
+    data: requestData,
   });
 };
 

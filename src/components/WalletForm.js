@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react';
-
+import React, { useRef, useState } from 'react';
 import Input from './Input';
 import classes from './WalletForm.module.css';
 
