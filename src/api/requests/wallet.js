@@ -39,8 +39,7 @@ export const removeAmountFromWalletApi = async (requestData) => {
 
 export const transferAmountWalletApi = async (requestData) => {
   let url = `/wallets/wallet/amount/transfer`;
-  console.log('before', requestData);
-  return await axios({
+  return axios({
     headers: { 'Content-Type': 'application/json' },
     method: 'POST',
     baseURL: baseURL,
