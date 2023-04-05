@@ -13,7 +13,11 @@ const authSlice = createSlice({
     userToken,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    setUserToken(state, action) {
+      state.userToken = action.payload.userToken;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.pending, (state) => {
@@ -30,5 +34,7 @@ const authSlice = createSlice({
       });
   },
 });
+
+export const { setUserToken } = authSlice.actions;
 
 export default authSlice;
